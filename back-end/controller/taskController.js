@@ -28,9 +28,20 @@ const update = async (request, response) => {
   response.status(200).json(updatedTask);
 };
 
+const remove = async (request, response) => {
+  const { id } = request.params;
+  const { status, data, message } = await taskService.remove(id);
+  if (message) {
+    return response.status(status)
+      .json({ err: { code: 'invalid_data', message } });
+  }
+  response.status(status).json(data);
+};
+
 module.exports = {
   create,
   getAll,
   getById,
   update,
+  remove,
 };

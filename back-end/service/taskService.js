@@ -28,9 +28,20 @@ const update = async ({ id, name, description }) => {
   return updatedTask;
 };
 
+const remove = async (id) => {
+  const taskToBeDeleted = await taskModel.getById(id);
+  const message = 'Wrong id format';
+  if (!taskToBeDeleted) {
+    return { status: 422, message };
+  }
+  const deletedTask = await taskModel.remove(id);
+  return { status: 200, data: deletedTask };
+};
+
 module.exports = {
   create,
   getAll,
   getById,
   update,
+  remove,
 };
