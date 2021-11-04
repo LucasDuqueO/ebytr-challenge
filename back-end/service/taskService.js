@@ -1,5 +1,10 @@
 const taskModel = require('../model/taskModel');
 
+const create = async ({ name, description }) => {
+  const newTask = await taskModel.create({ name, description });
+  return newTask;
+};
+
 const getAll = async () => {
   const taskList = await taskModel.getAll();
   return { data: taskList };
@@ -13,6 +18,7 @@ const getById = async (id) => {
 };
 
 module.exports = {
+  create,
   getAll,
   getById,
 };

@@ -12,7 +12,7 @@ app.listen( PORT, () => console.log(`Aplicativo ouvindo na porta ${PORT}`));
 app.get('/', taskController.getAll);
 app.get('/:id', taskController.getById);
 
-// app.post('/create', tasks.create);
+app.post('/create', taskController.create);
 
 // app.put('/update/:id', tasks.update);
 
