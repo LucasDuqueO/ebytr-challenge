@@ -14,6 +14,6 @@ app.get('/:id', taskController.getById);
 
 app.post('/create', taskController.create);
 
-// app.put('/update/:id', tasks.update);
+app.put('/update/:id', taskController.update);
 
 // app.delete('/delete/:id', tasks.remove);

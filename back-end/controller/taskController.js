@@ -18,8 +18,19 @@ const getById = async (request, response) => {
   response.status(200).json(data);
 };
 
+const update = async (request, response) => {
+  const { id } = request.params;
+  const { name, description } = request.body;
+  const updatedTask = await taskService.update({ id, name, description });
+  if (updatedTask.err) {
+    return response.status(422).json(updatedTask);
+  }
+  response.status(200).json(updatedTask);
+};
+
 module.exports = {
   create,
   getAll,
   getById,
+  update,
 };

@@ -17,8 +17,20 @@ const getById = async (id) => {
   return { data: returnedTask };
 };
 
+const update = async ({ id, name, description }) => {
+  const updatedTask = await taskModel.update({ id, name, description });
+  if (!updatedTask) {
+    return { err: {
+      code: 'invalid_data',
+      message: 'Wrong id format',
+    } };
+  }
+  return updatedTask;
+};
+
 module.exports = {
   create,
   getAll,
   getById,
+  update,
 };
